@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,3 +72,6 @@ Route::get('/historyafter', function(){
 Route::get('/admin', function(){
     return view('admin.app.index');
 });
+
+Route::get('/admin/{url}', [AdminController::class, 'template']);
+Route::get('/admin', [AdminController::class, 'index']);

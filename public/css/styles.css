@@ -19,6 +19,14 @@ body{
     padding: 8px;
 }
 
+.history-box{
+    width: 50%;
+    height: 100%;
+    background-color: #cdcdcf;
+    border-radius: 8px;
+    padding-top: 8px;
+}
+
 footer{
     margin-top: auto;
 }
@@ -56,4 +64,16 @@ footer{
 
 .text-size{
     font-size: 40px;
+}
+
+.bg-gradient-primary-side {
+    background-color: #135D2D;
+    background-image: linear-gradient(180deg,#135D2D 10%,#3d841e 100%);
+    background-size: cover;
+}
+
+pre{
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    word-wrap: break-word;
 }
