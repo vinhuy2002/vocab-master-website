@@ -67,3 +67,7 @@ Route::get('/bookmarkafter',function(){
 Route::get('/historyafter', function(){
     return view('afters.historyafter');
 });
+
+Route::get('/admin', function(){
+    return view('admin.app.index');
+});
