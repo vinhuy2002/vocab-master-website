@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TranslateController;
+use App\Http\Controllers\TranslateWordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,18 +23,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/vocabulary', function(){
-    return view('vocabulary');
-});
+// Vocabulary
+Route::get('/vocabulary', [TranslateWordController::class, 'index'])->name('vocab.index');
+Route::post('/vocabulary', [TranslateWordController::class, 'translate'])->name('vocab.trans');
+Route::get('/vocabulary/{word}', [TranslateWordController::class, 'transWord'])->name('vocab.trans.word');
 
 Route::get('/chat-ai', function(){
     return view('chatai');
 });
 
-Route::get('/translate', function(){
-    return view('translate');
-});
-
+Route::get('/translate', [TranslateController::class, 'index'])->name('trans.index');
+Route::get('/translate/action', [TranslateController::class, 'transResultVi'])->name('trans.resultvi');
+Route::get('/translate/action1', [TranslateController::class, 'transResultEn'])->name('trans.resulten');
 Route::get('/bookmark',function(){
     return view('bookmark');
 });
@@ -39,13 +44,14 @@ Route::get('/history', function(){
 });
 
 
-Route::get('/login', function(){
-    return view('forms.login');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login-custom', [LoginController::class, 'login'])->name('login.custom');
 
 Route::get('/register', function(){
     return view('forms.register');
 });
+
+Route::post('/register-custom', [RegisterController::class, 'register'])->name('register.custom');
 
 // After
 
