@@ -25,7 +25,7 @@ class AdminController extends Controller
         return Redirect::route('adminManager');
     }
     public function deleteUser($id){
-        Http::get('https://vocab-master-api.000webhostapp.com/api/users/delete/'.$id)->json();
+        Http::get('https://vocab-master-api.000webhostapp.com/api/users/delete/'.$id);
         return Redirect::route('adminManager');
     }
 
