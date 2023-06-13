@@ -12,7 +12,7 @@
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/admin/manager">
+        <a class="nav-link" href="{{ route('adminManager') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Manager</span></a>
     </li>
@@ -20,7 +20,7 @@
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="/admin/history">
+        <a class="nav-link" href="{{ route('adminHistoryIndex') }}">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>History</span></a>
     </li>
@@ -28,13 +28,24 @@
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="/admin/bookmark">
+        <a class="nav-link" href="{{ route('adminBookIndex') }}">
             <i class="fa-solid fa-bookmark"></i>
             <span>Bookmarks</span></a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('adminLesson') }}">
+            <i class="fa-solid fa-book"></i>
+            <span>Lessons</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

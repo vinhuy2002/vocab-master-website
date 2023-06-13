@@ -1,4 +1,5 @@
-@include('header.header')
+@extends('layouts.layouts')
+@section('content')
 <div class="container">
     <div class="row mt-5">
         <div class="col">
@@ -24,13 +25,10 @@
     </div>
 
 </div>
-
-@include('footer.footer')
+@endsection
+@push('js')
 <script>
     $(document).ready(function(){
-
-        // liveTransVi();
-        // liveTransEn();
         let dataOut = null;
         function liveTransVi(query = ''){
             $.ajax({
@@ -80,3 +78,5 @@
         });
     });
 </script>
+
+@endpush

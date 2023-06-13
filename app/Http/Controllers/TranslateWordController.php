@@ -23,6 +23,14 @@ class TranslateWordController extends Controller
 
     public function translate(Request $request){
             $word = $request->word;
+            $userId = session('id');
+            // dd($word);
+            if ($userId != null){
+                Http::post('https://vocab-master-api.000webhostapp.com/api/historys/add', [
+                    "id_user" => $userId,
+                    "word" => $word,
+                ])->json();
+            }
             if ($word != null){
                 return redirect(route('vocab.trans.word',['word' => $word]));
             } else{

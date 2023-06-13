@@ -1,4 +1,5 @@
-@include('header.header')
+@extends('layouts.layouts')
+@section('content')
     <div class="container">
         <div class="row mt-5">
             <div class="col">
@@ -14,7 +15,7 @@
                     @csrf
                     <div class="input-group">
                         <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Type Word Here..." aria-describedby="inputGroup-sizing-default" id="word" name="word" value="{{ $word }}">
-                        <button type="submit" class="btn primary-color-web" style="color: white;">Search</button>
+                        <button type="submit" class="btn primary-color-web" style="color: white;" id="searchBtn">Search</button>
                     </div>
                 </form>
             </div>
@@ -25,9 +26,12 @@
         <div class="row mt-1 mb-1">
             <div class="col" style="width: 100%; height: 100%; word-wrap: break-word;">
                     @if ($data != null)
+                        @if (session()->has('id'))
+                            <span class="fa fa-star" id="bookmark"></span>
+                        @endif
                     @foreach ($data as $item)
                     {{-- {{ dd($item) }} --}}
-                        <h2>{{ $item['word'] }}</h2>
+                        <h2 id="wordTest">{{ $item['word'] }}</h2>
                         <p>{{ $item['phonetic'] }}</p>
 
                         @foreach ($item['meanings'] as $means)
@@ -50,4 +54,35 @@
             </div>
         </div>
     </div>
-@include('footer.footer')
+@endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+
+            const userId = {{ session('id') }}
+            $("#wordTest").click(function () {
+                if (!$('#bookmark').hasClass("checked") && userId != null){
+                    $("#bookmark").addClass("checked");
+                    addBookmark();
+                }
+            });
+
+            function addBookmark(){
+                $.ajax({
+                    url: "{{ route('bookmarkAdd') }}",
+                    method: 'GET',
+                    data:{
+                        id_user: userId,
+                        word: $("#word").val(),
+                    },
+                    dataType: 'json',
+                    success: function(data){
+                }
+                });
+            }
+        });
+
+
+
+    </script>
+@endpush

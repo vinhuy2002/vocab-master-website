@@ -30,6 +30,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('login.custom') }}" method="POST">
+                                        @csrf
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="email" name="email" type="email"
                                                 placeholder="name@example.com" />
@@ -41,7 +42,7 @@
                                             <label for="inputPassword">Password</label>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn primary-color-web" href="/after">Login</a></div>
+                                            <div class="d-grid"><button type="submit" class="btn primary-color-web" style="color: white;">Login</button></div>
                                         </div>
                                     </form>
                                 </div>

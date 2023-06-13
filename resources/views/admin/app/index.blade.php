@@ -80,6 +80,7 @@
 
 
 
+    @stack('js-admin')
     <!-- Bootstrap core JavaScript-->
     <script src="{{ URL('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -13,13 +13,12 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-        // dd("Hello");
-        // $request->validate([
-        //     'firstName' => 'required',
-        //     'lastName' => 'required',
-        //     'email' => 'required',
-        //     'password' => 'required|confirmed',
-        // ]);
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'password' => 'required|confirmed',
+        ]);
         $firstName = $request->firstName;
         $lastName = $request->lastName;
         $email = $request->email;
@@ -31,6 +30,6 @@ class RegisterController extends Controller
             "email" => $email,
             "password" => $password,
         ]);
-        dd($respone);
+        return redirect(route('login.index'));
     }
 }

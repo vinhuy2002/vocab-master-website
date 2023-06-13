@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\BookmarksAdminController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HistoryAdminController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TranslateController;
@@ -21,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('indexpage');
 
 // Vocabulary
 Route::get('/vocabulary', [TranslateWordController::class, 'index'])->name('vocab.index');
@@ -35,17 +39,16 @@ Route::get('/chat-ai', function(){
 Route::get('/translate', [TranslateController::class, 'index'])->name('trans.index');
 Route::get('/translate/action', [TranslateController::class, 'transResultVi'])->name('trans.resultvi');
 Route::get('/translate/action1', [TranslateController::class, 'transResultEn'])->name('trans.resulten');
-Route::get('/bookmark',function(){
-    return view('bookmark');
-});
 
-Route::get('/history', function(){
-    return view('history');
-});
+// Bookmark
+Route::get('/bookmark-add', [BookmarkController::class, 'bookmarkAdd'])->name('bookmarkAdd');
+Route::get('/bookmark-del', [BookmarkController::class, 'bookmarkDel'])->name('bookmarkDel');
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login-custom', [LoginController::class, 'login'])->name('login.custom');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', function(){
     return view('forms.register');
@@ -79,5 +82,23 @@ Route::get('/admin', function(){
     return view('admin.app.index');
 });
 
-Route::get('/admin/{url}', [AdminController::class, 'template']);
-Route::get('/admin', [AdminController::class, 'index']);
+// Manager Account
+Route::get('/admin/manager', [AdminController::class, 'index'])->name('adminManager');
+Route::post('/admin/manager/add', [AdminController::class, 'addUser'])->name('adminAddUser');
+Route::get('/admin/manager/delete/{id}', [AdminController::class, 'deleteUser']);
+Route::post('/admin/manager/update/{id}', [AdminController::class, 'updateUser']);
+// Bookmark admin
+Route::get('/admin/bookmarks', [BookmarksAdminController::class, 'index'])->name('adminBookIndex');
+Route::get('/admin/bookmarks/delete/{id}', [BookmarksAdminController::class, 'deleteBookmark']);
+
+// History
+Route::get('/admin/history', [HistoryAdminController::class, 'index'])->name('adminHistoryIndex');
+Route::get('/admin/history/delete/{id}', [HistoryAdminController::class, 'deleteHistory']);
+Route::post('/addHistory', [HistoryAdminController::class, 'addHistory'])->name('addHistory');
+
+// Lesson
+Route::get('/admin/lesson', [LessonController::class, 'index'])->name('adminLesson');
+Route::get('/admin/lesson/delete/{id}', [LessonController::class, 'deleteLesson']);
+Route::post('/admin/lesson/add', [LessonController::class, 'addNewLesson'])->name('addNewLesson');
+Route::post('/admin/lesson/update/{id}', [LessonController::class, 'updateLesson']);
+

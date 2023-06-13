@@ -1,11 +1,15 @@
-@include('header.header')
+@extends('layouts.layouts')
+@section('content')
     <div class="container">
         <div class="row justify-content-center align-items-center mt-5">
             <div class="col text-center ">
                 <p class="text-bold text-size">Website For Learning English</p>
                 <a href="/vocabulary"><button type="button" class="btn primary-color-web" style="color: white;">Learn Now</button></a>
-                <p class="pt-3">You can <a href="/login"><span class="text-underline">login here</span></a> to save your progress</p>
-                <p>Or if you don’t have account, you can <a href="/register"><span class="text-underline">create one</span></a> for free </p>
+                @if (!session()->has('name'))
+                    <p class="pt-3">You can <a href="/login"><span class="text-underline">login here</span></a> to save your progress</p>
+                    <p>Or if you don’t have account, you can <a href="/register"><span class="text-underline">create one</span></a> for free </p>
+                @endif
+
             </div>
             <div class="col align-items-center">
                 <img src="{{ asset('images/english-logo.png') }}" width="752" height="313" />
@@ -33,4 +37,4 @@
             </div>
         </div>
     </div>
-@include('footer.footer')
+@endsection
